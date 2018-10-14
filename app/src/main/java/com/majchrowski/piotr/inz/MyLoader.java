@@ -18,6 +18,6 @@ public class MyLoader extends CursorLoader {
 
     @Override
     public Cursor loadInBackground() {
-        return myDatabaseHelper.getAllEmployees();
+        return myDatabaseHelper.getAllEntriesJoin();
     }
 }

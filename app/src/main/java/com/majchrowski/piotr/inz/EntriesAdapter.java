@@ -2,6 +2,7 @@ package com.majchrowski.piotr.inz;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -79,16 +80,19 @@ public class EntriesAdapter extends RecyclerView.Adapter<EntriesAdapter.EntriesV
 
         int id = mCursor.getInt(mCursor.getColumnIndex(DatabaseHelper._ID));
         String name = mCursor.getString(mCursor.getColumnIndex(DatabaseHelper.NAME));
-        int type = mCursor.getInt(mCursor.getColumnIndex(DatabaseHelper.TYPE_ID));
-        int category = mCursor.getInt(mCursor.getColumnIndex(DatabaseHelper.CATEGORY_ID));
+        String type = mCursor.getString(mCursor.getColumnIndex(DatabaseHelper.TYPE));
+        String category = mCursor.getString(mCursor.getColumnIndex(DatabaseHelper.CATEGORY));
         String date = mCursor.getString((mCursor.getColumnIndex(DatabaseHelper.DATE)));
         double value = mCursor.getDouble(mCursor.getColumnIndex(DatabaseHelper.VALUE));
         holder.idText.setText(String.valueOf(id));
-        holder.typeText.setText(String.valueOf(type));
-        holder.categoryText.setText(String.valueOf(category));
+        holder.typeText.setText(type);
+        if(type.equals("Income")) holder.typeText.setTextColor(Color.GREEN); else holder.typeText.setTextColor(Color.RED);
+        holder.categoryText.setText(category);
         holder.valueText.setText(String.valueOf(value));
         holder.dateText.setText(date);
         holder.nameText.setText(name);
+        long idL = mCursor.getLong(mCursor.getColumnIndex(DatabaseHelper._ID));
+        holder.itemView.setTag(idL);
     }
 
     @Override

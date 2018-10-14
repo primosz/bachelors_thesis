@@ -25,10 +25,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String VALUE = "value";
     public static final String NAME = "name";
     // Database Information
-    static final String DB_NAME = "budget_testASDtest.DB";
+    static final String DB_NAME = "btesting.DB";
 
     // database version
-    static final int DB_VERSION = 3;
+    static final int DB_VERSION = 1;
 
     private SQLiteDatabase database;
 
@@ -111,7 +111,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         database.insert(MAIN_TABLE_NAME, null, contentValues);
     }
 
-    public Cursor getAllEmployees()
+    public Cursor getAllEntries()
     {
         String[] projection = {
                 _ID, NAME, VALUE, DATE, TYPE_ID,CATEGORY_ID
@@ -119,6 +119,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         Cursor cursor = database.query(MAIN_TABLE_NAME, projection, null, null, null, null, null);
 
+        return cursor;
+    }
+
+    public Cursor getAllEntriesJoin()
+    {   String rawQuery ="SELECT  ENTRY._ID, NAME, VALUE, DATE, TYPE ,CATEGORY\n" +
+            "FROM ENTRY join TYPE_TABLE on ENTRY.type_id=TYPE_TABLE._id\n" +
+            "join CATEGORY_TABLE on ENTRY.category_id=CATEGORY_TABLE._id";
+        Cursor cursor = database.rawQuery(rawQuery, null);
+        return cursor;
+    }
+
+    public Cursor getTypeId(String typeName){
+        Cursor cursor = database.rawQuery("SELECT _id FROM TYPE_TABLE WHERE TYPE_TABLE.type=\""+typeName+"\"", null);
+        return cursor;
+    }
+
+    public Cursor getCategoryId(String categoryName){
+        Cursor cursor = database.rawQuery("SELECT _id FROM CATEGORY_TABLE WHERE CATEGORY_TABLE.category=\""+categoryName+"\"", null);
         return cursor;
     }
 

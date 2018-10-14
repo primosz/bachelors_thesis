@@ -12,13 +12,14 @@
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:ems="10"
         android:hint="@string/enter_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="16dp">
+        app:layout_constraintTop_toTopOf="parent">
 
         <requestFocus />
     </EditText>
@@ -41,23 +42,6 @@
         app:layout_constraintTop_toBottomOf="@+id/name_edittext"></EditText>
 
     <EditText
-        android:id="@+id/typ_edittext"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:ems="10"
-        android:hint="Type"
-        android:inputType="numberDecimal"
-        android:minLines="5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/date_edittext"></EditText>
-
-    <EditText
         android:id="@+id/date_edittext"
         android:layout_width="300dp"
         android:layout_height="50dp"
@@ -74,20 +58,36 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/value_edittext"></EditText>
 
+    <ToggleButton
+        android:id="@+id/typeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:theme="@style/AppThemeToggle"
+        android:textOff="Outcome"
+        android:textOn="Income"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/category_spinner" />
 
 
     <Spinner
         android:id="@+id/category_spinner"
         android:layout_width="300dp"
         android:layout_height="50dp"
+
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/typ_edittext" />
+        app:layout_constraintTop_toBottomOf="@+id/date_edittext" />
 
 
     <Button

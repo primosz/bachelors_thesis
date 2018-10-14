@@ -1,2 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+
+
+    <style name="AppThemeToggle" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:textColorPrimary">#ff7043</item>
+        <item name="colorAccent">#28a626</item>
+        <item name="android:colorControlNormal">#f9252c</item>
+        <item name="android:colorControlHighlight">#74e1e9</item>
+        <item name="android:colorButtonNormal">#ffffff</item>
+    </style>
+
+
+</resources>

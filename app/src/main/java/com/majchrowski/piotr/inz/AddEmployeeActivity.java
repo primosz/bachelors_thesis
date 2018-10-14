@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,7 @@ public class AddEmployeeActivity extends AppCompatActivity {
     private List<Category> categoryList;
     private DatabaseHelper myHelper;
     int selectedCategory;
+    ToggleButton typeButton;
 
    
 
@@ -33,7 +35,7 @@ public class AddEmployeeActivity extends AppCompatActivity {
 
         nameEditText = (EditText) findViewById(R.id.name_edittext);
         valueEditText = (EditText) findViewById(R.id.value_edittext);
-        typeEditText = (EditText) findViewById(R.id.typ_edittext);
+        typeButton = (ToggleButton) findViewById(R.id.typeButton);
         dateEditText = (EditText) findViewById(R.id.date_edittext);
 
 
@@ -81,7 +83,11 @@ public class AddEmployeeActivity extends AppCompatActivity {
         String name = nameEditText.getText().toString();
         String date = dateEditText.getText().toString();
         double value = Double.parseDouble(valueEditText.getText().toString());
-        int type = Integer.parseInt(typeEditText.getText().toString());
+        int type;
+        if(typeButton.isChecked()){
+            type=1;
+        }
+        else type=2;
         int category = selectedCategory;
 
         myHelper.addEntry(name, value, date, type, category);

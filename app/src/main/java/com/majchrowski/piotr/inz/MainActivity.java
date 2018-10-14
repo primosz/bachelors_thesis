@@ -1,5 +1,6 @@
 package com.majchrowski.piotr.inz;
 
+import android.content.ClipData;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -49,29 +51,28 @@ public class MainActivity extends AppCompatActivity  implements LoaderManager.Lo
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         mAdapter = new EntriesAdapter(this, null);
         recyclerView.setAdapter(mAdapter);
+
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                myHelper.delete((long)viewHolder.itemView.getTag());
+                getSupportLoaderManager().restartLoader(LOADER_ID, null, MainActivity.this);
+            }
+        }).attachToRecyclerView(recyclerView);
+
+
+
         mAdapter.setOnItemClickListener(MainActivity.this);
         getSupportLoaderManager().initLoader(LOADER_ID, null, this);
 
 
 
-       /* listView = (ListView) findViewById(R.id.list_view);
-        listView.setEmptyView(findViewById(R.id.empty));
 
-        adapter = new SimpleCursorAdapter(this, R.layout.activity_view_record, null, from, to, 0);
-
-        listView.setAdapter(adapter);
-
-
-
-
-
-        recyclerView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-            }
-        });
-        */
 
     }
 
@@ -141,8 +142,14 @@ public class MainActivity extends AppCompatActivity  implements LoaderManager.Lo
         String id = idTextView.getText().toString();
         String name = nameTextView.getText().toString();
         double value = Double.parseDouble(valueTextView.getText().toString());
-        int type = Integer.parseInt(typeTextView.getText().toString());
-        int category = Integer.parseInt(categoryTextView.getText().toString());
+        String typeName = typeTextView.getText().toString();
+        Cursor cursor =myHelper.getTypeId(typeName);
+        cursor.moveToFirst();
+        int type = cursor.getInt(0);
+        String categoryName = categoryTextView.getText().toString();
+        cursor=myHelper.getCategoryId(categoryName);
+        cursor.moveToFirst();
+        int category = cursor.getInt(0);
         String date = dateTextView.getText().toString();
 
 

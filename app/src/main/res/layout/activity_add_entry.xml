@@ -43,23 +43,6 @@
         app:layout_constraintTop_toBottomOf="@+id/name_edittext"></EditText>
 
     <EditText
-        android:id="@+id/typ_edittext"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:ems="10"
-        android:hint="Category"
-        android:inputType="numberDecimal"
-        android:minLines="5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/date_edittext"></EditText>
-
-    <EditText
         android:id="@+id/date_edittext"
         android:layout_width="300dp"
         android:layout_height="50dp"
@@ -83,7 +66,7 @@
         android:layout_gravity="center"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="172dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:onClick="addButtonPressed"
@@ -98,11 +81,29 @@
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/typ_edittext" />
+        app:layout_constraintTop_toBottomOf="@+id/date_edittext" />
+
+    <ToggleButton
+        android:id="@+id/typeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:theme="@style/AppThemeToggle"
+        android:textOff="Outcome"
+        android:textOn="Income"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/category_spinner"
+        />
 
 </android.support.constraint.ConstraintLayout>
