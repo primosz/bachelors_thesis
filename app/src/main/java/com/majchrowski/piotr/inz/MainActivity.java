@@ -8,6 +8,8 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,11 +17,12 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+public class MainActivity extends AppCompatActivity  implements LoaderManager.LoaderCallbacks<Cursor>, EntriesAdapter.OnItemClickListener {
 
     private DatabaseHelper myHelper;
 
     private ListView listView;
+    private EntriesAdapter mAdapter;
 
     private SimpleCursorAdapter adapter;
 
@@ -38,47 +41,36 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         myHelper = new DatabaseHelper(this);
         //myHelper.drop();
         myHelper.open();
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mAdapter = new EntriesAdapter(this, null);
+        recyclerView.setAdapter(mAdapter);
+        mAdapter.setOnItemClickListener(MainActivity.this);
+        getSupportLoaderManager().initLoader(LOADER_ID, null, this);
 
 
-        listView = (ListView) findViewById(R.id.list_view);
+       /* listView = (ListView) findViewById(R.id.list_view);
         listView.setEmptyView(findViewById(R.id.empty));
 
         adapter = new SimpleCursorAdapter(this, R.layout.activity_view_record, null, from, to, 0);
 
         listView.setAdapter(adapter);
 
-        getSupportLoaderManager().initLoader(LOADER_ID, null, this);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+
+
+        recyclerView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                TextView idTextView = (TextView) view.findViewById(R.id.tvId);
-                TextView nameTextView = (TextView) view.findViewById(R.id.tvName);
-                TextView dateTextView = (TextView) view.findViewById(R.id.tvDate);
-                TextView categoryTextView = (TextView) view.findViewById(R.id.tvCategory);
-                TextView typeTextView = (TextView) view.findViewById(R.id.tvType);
-                TextView valueTextView = view.findViewById(R.id.tvValue);
 
-                String id = idTextView.getText().toString();
-                String name = nameTextView.getText().toString();
-                double value = Double.parseDouble(valueTextView.getText().toString());
-                int type = Integer.parseInt(typeTextView.getText().toString());
-                int category = Integer.parseInt(categoryTextView.getText().toString());
-                String date = dateTextView.getText().toString();
-
-
-                Intent modify_intent = new Intent(getApplicationContext(), ModifyEmployeeActivity.class);
-                modify_intent.putExtra("name", name);
-                modify_intent.putExtra("category", category);
-                modify_intent.putExtra("date", date);
-                modify_intent.putExtra("id", id);
-                modify_intent.putExtra("type", type);
-                modify_intent.putExtra("value", value);
-
-                startActivity(modify_intent);
             }
         });
+        */
+
     }
+
+
 
     @Override
     public void onResume()
@@ -113,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         // Swap the new cursor in.  (The framework will take care of closing the
         // old cursor once we return.)
-        adapter.swapCursor(data);
+        mAdapter.swapCursor(data);
     }
 
     @Override
@@ -121,6 +113,34 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         // This is called when the last Cursor provided to onLoadFinished()
         // above is about to be closed.  We need to make sure we are no
         // longer using it.
-        adapter.swapCursor(null);
+        mAdapter.swapCursor(null);
+    }
+
+    @Override
+    public void onItemClick(int position, View v) {
+        TextView idTextView = (TextView) v.findViewById(R.id.tvItemId);
+        TextView nameTextView = (TextView) v.findViewById(R.id.tvItemName);
+        TextView dateTextView = (TextView) v.findViewById(R.id.tvItemDate);
+        TextView categoryTextView = (TextView) v.findViewById(R.id.tvItemCategory);
+        TextView typeTextView = (TextView) v.findViewById(R.id.tvItemType);
+        TextView valueTextView = v.findViewById(R.id.tvItemValue);
+
+        String id = idTextView.getText().toString();
+        String name = nameTextView.getText().toString();
+        double value = Double.parseDouble(valueTextView.getText().toString());
+        int type = Integer.parseInt(typeTextView.getText().toString());
+        int category = Integer.parseInt(categoryTextView.getText().toString());
+        String date = dateTextView.getText().toString();
+
+
+        Intent modify_intent = new Intent(getApplicationContext(), ModifyEmployeeActivity.class);
+        modify_intent.putExtra("name", name);
+        modify_intent.putExtra("category", category);
+        modify_intent.putExtra("date", date);
+        modify_intent.putExtra("id", id);
+        modify_intent.putExtra("type", type);
+        modify_intent.putExtra("value", value);
+
+        startActivity(modify_intent);
     }
 }
