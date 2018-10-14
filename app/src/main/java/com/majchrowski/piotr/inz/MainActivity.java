@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity  implements LoaderManager.Lo
 
     private ListView listView;
     private EntriesAdapter mAdapter;
+    private TextView empty;
+    private RecyclerView recyclerView;
 
     private SimpleCursorAdapter adapter;
 
@@ -41,12 +43,15 @@ public class MainActivity extends AppCompatActivity  implements LoaderManager.Lo
         myHelper = new DatabaseHelper(this);
         //myHelper.drop();
         myHelper.open();
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        empty = (TextView) findViewById(R.id.empty);
+
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         mAdapter = new EntriesAdapter(this, null);
         recyclerView.setAdapter(mAdapter);
         mAdapter.setOnItemClickListener(MainActivity.this);
         getSupportLoaderManager().initLoader(LOADER_ID, null, this);
+
 
 
        /* listView = (ListView) findViewById(R.id.list_view);
@@ -106,6 +111,14 @@ public class MainActivity extends AppCompatActivity  implements LoaderManager.Lo
         // Swap the new cursor in.  (The framework will take care of closing the
         // old cursor once we return.)
         mAdapter.swapCursor(data);
+        if(recyclerView.getAdapter().getItemCount()==0)
+        {
+            empty.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.GONE);
+        }else{
+            empty.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
