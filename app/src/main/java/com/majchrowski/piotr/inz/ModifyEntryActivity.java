@@ -1,5 +1,6 @@
 package com.majchrowski.piotr.inz;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -8,20 +9,28 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
-public class ModifyEmployeeActivity extends AppCompatActivity {
+public class ModifyEntryActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
-    private EditText nameEditText, dateEditText, valueEditText;
+    private EditText nameEditText,valueEditText;
+    private TextView dateTextView;
     private Spinner categorySpinner;
     ArrayList<Category> categoryList;
     int selectedCategory;
     ToggleButton typeButton;
+    String currentDateString;
 
     private long _id;
 
@@ -38,10 +47,25 @@ public class ModifyEmployeeActivity extends AppCompatActivity {
         typeButton=(ToggleButton)findViewById(R.id.typeButton);
         categorySpinner = (Spinner) findViewById(R.id.category_spinner);
         categorySpinner.setAdapter(categoryAdapter);
+
+        dateTextView = (TextView) findViewById(R.id.date_textview);
+
+
+        Date cal = (Date) Calendar.getInstance().getTime();
+        currentDateString = new SimpleDateFormat("dd/MM/yyyy").format(cal.getTime());
+        dateTextView.setText(currentDateString);
+        dateTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                android.support.v4.app.DialogFragment datePicker = new DatePickerFragment();
+                datePicker.show(getSupportFragmentManager(), "date picker");
+            }
+        });
+
         categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(ModifyEmployeeActivity.this, categoryList.get(position).getName(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(ModifyEntryActivity.this, categoryList.get(position).getName(), Toast.LENGTH_SHORT).show();
                 selectedCategory = categoryList.get(position).getId();
 
             }
@@ -56,7 +80,7 @@ public class ModifyEmployeeActivity extends AppCompatActivity {
         valueEditText = (EditText) findViewById(R.id.value_edittext);
 
 
-        dateEditText = (EditText) findViewById(R.id.date_edittext);
+
 
         Intent intent = getIntent();
         String id = intent.getStringExtra("id");
@@ -69,7 +93,7 @@ public class ModifyEmployeeActivity extends AppCompatActivity {
         _id = Long.parseLong(id);
 
         nameEditText.setText(name);
-        dateEditText.setText(date);
+        dateTextView.setText(date);
         valueEditText.setText(""+value);
         categorySpinner.setSelection(category-1);
         typeButton.setChecked(type==1);
@@ -96,7 +120,7 @@ public class ModifyEmployeeActivity extends AppCompatActivity {
 
     public void updateButtonPressed(View view) {
         String name = nameEditText.getText().toString();
-        String date = dateEditText.getText().toString();
+        String date = dateTextView.getText().toString();
         double value = Double.parseDouble(valueEditText.getText().toString());
         int type;
         if(typeButton.isChecked()){
@@ -134,18 +158,18 @@ public class ModifyEmployeeActivity extends AppCompatActivity {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            AddEmployeeActivity.CategoryHolder holder;
+            AddEntryActivity.CategoryHolder holder;
             View categoryView = convertView;
             if(categoryView==null){
                 categoryView = getLayoutInflater().inflate(R.layout.row_category_spinner, parent, false);
 
-                holder = new AddEmployeeActivity.CategoryHolder();
+                holder = new AddEntryActivity.CategoryHolder();
                 holder.categoryId = categoryView.findViewById(R.id.tvCatId);
                 holder.categoryName = categoryView.findViewById(R.id.tvCatName);
                 categoryView.setTag(holder);
             }
             else{
-                holder = (AddEmployeeActivity.CategoryHolder) categoryView.getTag();
+                holder = (AddEntryActivity.CategoryHolder) categoryView.getTag();
             }
 
             Category category = categoryList.get(position);
@@ -155,4 +179,16 @@ public class ModifyEmployeeActivity extends AppCompatActivity {
         }
 
     };
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.YEAR, year);
+        c.set(Calendar.MONTH, month);
+        c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+        currentDateString = new SimpleDateFormat("dd/MM/yyyy").format(c.getTime());
+
+
+        dateTextView.setText(currentDateString);
+
+    }
 }

@@ -15,7 +15,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddEmployeeActivity" />
-        <activity android:name=".ModifyEmployeeActivity"></activity>
+        <activity android:name=".AddEntryActivity" />
+        <activity android:name=".ModifyEntryActivity"></activity>
     </application>
 </manifest>

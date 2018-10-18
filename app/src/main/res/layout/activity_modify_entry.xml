@@ -41,8 +41,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name_edittext"></EditText>
 
-    <EditText
-        android:id="@+id/date_edittext"
+
+    <Spinner
+        android:id="@+id/category_spinner"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
@@ -50,13 +51,9 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:ems="10"
-        android:hint="Date"
-        android:inputType="date"
-        android:minLines="5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/value_edittext"></EditText>
+        app:layout_constraintTop_toBottomOf="@+id/value_edittext" />
 
     <ToggleButton
         android:id="@+id/typeButton"
@@ -64,30 +61,32 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="40dp"
+
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:theme="@style/AppThemeToggle"
         android:textOff="Outcome"
         android:textOn="Income"
+        android:theme="@style/AppThemeToggle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/category_spinner" />
+        app:layout_constraintTop_toBottomOf="@+id/date_textview" />
 
-
-    <Spinner
-        android:id="@+id/category_spinner"
+    <TextView
+        android:id="@+id/date_textview"
         android:layout_width="300dp"
         android:layout_height="50dp"
-
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="Date"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/date_edittext" />
+        app:layout_constraintTop_toBottomOf="@+id/category_spinner" />
 
 
     <Button

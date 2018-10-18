@@ -1,5 +1,7 @@
 package com.majchrowski.piotr.inz;
 
+import android.app.DatePickerDialog;
+import android.app.DialogFragment;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -7,23 +9,31 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
-public class AddEmployeeActivity extends AppCompatActivity {
+public class AddEntryActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
-    private EditText nameEditText, typeEditText, dateEditText, valueEditText;
+    private EditText nameEditText, valueEditText;
+    private  TextView dateTextView;
 
     private Spinner categorySpinner;
     private List<Category> categoryList;
     private DatabaseHelper myHelper;
     int selectedCategory;
+    String currentDateString;
     ToggleButton typeButton;
 
    
@@ -36,7 +46,20 @@ public class AddEmployeeActivity extends AppCompatActivity {
         nameEditText = (EditText) findViewById(R.id.name_edittext);
         valueEditText = (EditText) findViewById(R.id.value_edittext);
         typeButton = (ToggleButton) findViewById(R.id.typeButton);
-        dateEditText = (EditText) findViewById(R.id.date_edittext);
+        dateTextView = (TextView) findViewById(R.id.date_textview);
+
+
+        Date cal = (Date) Calendar.getInstance().getTime();
+        currentDateString = new SimpleDateFormat("dd/MM/yyyy").format(cal.getTime());
+        dateTextView.setText(currentDateString);
+        dateTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                android.support.v4.app.DialogFragment datePicker = new DatePickerFragment();
+                datePicker.show(getSupportFragmentManager(), "date picker");
+            }
+        });
+
 
 
 
@@ -49,7 +72,7 @@ public class AddEmployeeActivity extends AppCompatActivity {
         categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(AddEmployeeActivity.this, categoryList.get(position).getName(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddEntryActivity.this, categoryList.get(position).getName(), Toast.LENGTH_SHORT).show();
                 selectedCategory = categoryList.get(position).getId();
 
             }
@@ -60,6 +83,19 @@ public class AddEmployeeActivity extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.YEAR, year);
+        c.set(Calendar.MONTH, month);
+        c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+        currentDateString = new SimpleDateFormat("dd/MM/yyyy").format(c.getTime());
+
+
+        dateTextView.setText(currentDateString);
 
     }
 
@@ -81,7 +117,7 @@ public class AddEmployeeActivity extends AppCompatActivity {
 
     public void addButtonPressed(View view) {
         String name = nameEditText.getText().toString();
-        String date = dateEditText.getText().toString();
+        String date = dateTextView.getText().toString();
         double value = Double.parseDouble(valueEditText.getText().toString());
         int type;
         if(typeButton.isChecked()){

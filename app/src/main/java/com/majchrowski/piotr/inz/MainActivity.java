@@ -1,10 +1,8 @@
 package com.majchrowski.piotr.inz;
 
-import android.content.ClipData;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.SimpleCursorAdapter;
@@ -15,7 +13,6 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -23,7 +20,7 @@ public class MainActivity extends AppCompatActivity  implements LoaderManager.Lo
 
     private DatabaseHelper myHelper;
 
-    private ListView listView;
+
     private EntriesAdapter mAdapter;
     private TextView empty;
     private RecyclerView recyclerView;
@@ -32,10 +29,7 @@ public class MainActivity extends AppCompatActivity  implements LoaderManager.Lo
 
     private static final int LOADER_ID = 1976;
 
-    final String[] from = new String[] { DatabaseHelper._ID,
-            DatabaseHelper.NAME, DatabaseHelper.DATE, DatabaseHelper.CATEGORY_ID , DatabaseHelper.TYPE_ID, DatabaseHelper.VALUE};
 
-    final int[] to = new int[] { R.id.tvId, R.id.tvName, R.id.tvDate, R.id.tvCategory , R.id.tvType, R.id.tvValue};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +37,6 @@ public class MainActivity extends AppCompatActivity  implements LoaderManager.Lo
         setContentView(R.layout.fragment_ent_list);
 
         myHelper = new DatabaseHelper(this);
-        //myHelper.drop();
         myHelper.open();
         empty = (TextView) findViewById(R.id.empty);
 
@@ -96,7 +89,7 @@ public class MainActivity extends AppCompatActivity  implements LoaderManager.Lo
 
         int id = item.getItemId();
         if (id == R.id.add_record) {
-            Intent add_mem = new Intent(this, AddEmployeeActivity.class);
+            Intent add_mem = new Intent(this, AddEntryActivity.class);
             startActivity(add_mem);
         }
         return super.onOptionsItemSelected(item);
@@ -153,7 +146,7 @@ public class MainActivity extends AppCompatActivity  implements LoaderManager.Lo
         String date = dateTextView.getText().toString();
 
 
-        Intent modify_intent = new Intent(getApplicationContext(), ModifyEmployeeActivity.class);
+        Intent modify_intent = new Intent(getApplicationContext(), ModifyEntryActivity.class);
         modify_intent.putExtra("name", name);
         modify_intent.putExtra("category", category);
         modify_intent.putExtra("date", date);
