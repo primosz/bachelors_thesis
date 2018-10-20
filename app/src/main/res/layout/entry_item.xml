@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
-    android:gravity="center">
+    android:layout_marginBottom="10dp"
+    android:gravity="left">
 
     <TextView
         android:id="@+id/tvItemId"
-        android:layout_width="20dp"
+        android:layout_width="25dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginRight="2dp"
         android:gravity="center_vertical|center_horizontal"
         android:textColor="@color/colorPrimaryDark" />
 
@@ -31,12 +31,12 @@
 
         android:layout_marginTop="2dp"
         android:gravity="center_vertical|center_horizontal"
-        android:text="TextView"
+        android:text="1234.5"
         android:textSize="12sp" />
 
     <TextView
         android:id="@+id/tvItemCategory"
-        android:layout_width="80dp"
+        android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
         android:gravity="center_vertical|center_horizontal"
@@ -55,7 +55,7 @@
 
     <TextView
         android:id="@+id/tvItemDate"
-        android:layout_width="match_parent"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
         android:gravity="center_vertical|center_horizontal"

@@ -3,6 +3,7 @@ package com.majchrowski.piotr.inz;
 import android.app.DatePickerDialog;
 import android.app.DialogFragment;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -16,6 +17,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
+
+import com.github.sundeepk.compactcalendarview.domain.Event;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -57,6 +60,8 @@ public class AddEntryActivity extends AppCompatActivity implements DatePickerDia
             public void onClick(View v) {
                 android.support.v4.app.DialogFragment datePicker = new DatePickerFragment();
                 datePicker.show(getSupportFragmentManager(), "date picker");
+
+
             }
         });
 
@@ -92,7 +97,7 @@ public class AddEntryActivity extends AppCompatActivity implements DatePickerDia
         c.set(Calendar.YEAR, year);
         c.set(Calendar.MONTH, month);
         c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        currentDateString = new SimpleDateFormat("dd/MM/yyyy").format(c.getTime());
+        currentDateString = new SimpleDateFormat("yyyy-MM-dd").format(c.getTime());
 
 
         dateTextView.setText(currentDateString);

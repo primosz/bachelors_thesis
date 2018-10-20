@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.majchrowski.piotr.inz">
 
@@ -16,6 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".AddEntryActivity" />
-        <activity android:name=".ModifyEntryActivity"></activity>
+        <activity android:name=".ModifyEntryActivity" />
+        <activity android:name=".CalendarActivity"></activity>
     </application>
+
 </manifest>

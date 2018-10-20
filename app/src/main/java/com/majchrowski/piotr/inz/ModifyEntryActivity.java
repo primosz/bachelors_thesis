@@ -101,11 +101,7 @@ public class ModifyEntryActivity extends AppCompatActivity implements DatePicker
 
     private void populateCategoryList() {
         categoryList = new ArrayList<>();
-       /* categoryList.add(new Category(1, "zakupy"));
-        categoryList.add(new Category(2, "lalala"));
-        categoryList.add(new Category(3, "bar"));
-        categoryList.add(new Category(4, "dom"));
-        categoryList.add(new Category(5, "podróże")); */
+
         Cursor mCursor = myHelper.getCategories();
         for(mCursor.moveToFirst(); !mCursor.isAfterLast(); mCursor.moveToNext()) {
             // The Cursor is now set to the right position
@@ -185,7 +181,7 @@ public class ModifyEntryActivity extends AppCompatActivity implements DatePicker
         c.set(Calendar.YEAR, year);
         c.set(Calendar.MONTH, month);
         c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        currentDateString = new SimpleDateFormat("dd/MM/yyyy").format(c.getTime());
+        currentDateString = new SimpleDateFormat("yyyy-MM-dd").format(c.getTime());
 
 
         dateTextView.setText(currentDateString);

@@ -10,4 +10,11 @@
         android:title="@string/add_record"
         app:showAsAction="always"/>
 
+    <item
+    android:id="@+id/cal"
+    android:icon="@android:drawable/ic_menu_add"
+    android:orderInCategory="100"
+    android:title="@string/add_record"
+    app:showAsAction="always"/>
+
 </menu>

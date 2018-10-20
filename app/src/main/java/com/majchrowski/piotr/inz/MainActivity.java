@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity  implements LoaderManager.Lo
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         mAdapter = new EntriesAdapter(this, null);
         recyclerView.setAdapter(mAdapter);
+        //myHelper.populateWithTestData();
 
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
@@ -90,6 +91,11 @@ public class MainActivity extends AppCompatActivity  implements LoaderManager.Lo
         int id = item.getItemId();
         if (id == R.id.add_record) {
             Intent add_mem = new Intent(this, AddEntryActivity.class);
+            startActivity(add_mem);
+        }
+
+        if (id == R.id.cal) {
+            Intent add_mem = new Intent(this, CalendarActivity.class);
             startActivity(add_mem);
         }
         return super.onOptionsItemSelected(item);

@@ -101,7 +101,7 @@ public class EntriesAdapter extends RecyclerView.Adapter<EntriesAdapter.EntriesV
     }
 
     public void swapCursor(Cursor newCursor){
-        if (mCursor!=null) mCursor.close();
+       // if (mCursor!=null) mCursor.close();
         mCursor = newCursor;
         if(newCursor!=null) notifyDataSetChanged();
     }
