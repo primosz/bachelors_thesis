@@ -8,7 +8,7 @@
     android:gravity="left"
     android:orientation="horizontal"
     android:background="?android:attr/selectableItemBackground"
-    str>
+    >
 
     <TextView
         android:id="@+id/tvItemId"
