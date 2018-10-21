@@ -53,7 +53,7 @@ public class AddEntryActivity extends AppCompatActivity implements DatePickerDia
 
 
         Date cal = (Date) Calendar.getInstance().getTime();
-        currentDateString = new SimpleDateFormat("dd/MM/yyyy").format(cal.getTime());
+        currentDateString = new SimpleDateFormat("yyyy-MM-dd").format(cal.getTime());
         dateTextView.setText(currentDateString);
         dateTextView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,7 +128,10 @@ public class AddEntryActivity extends AppCompatActivity implements DatePickerDia
         if(typeButton.isChecked()){
             type=1;
         }
-        else type=2;
+        else {
+            type=2;
+            value = value*-1;
+        }
         int category = selectedCategory;
 
         myHelper.addEntry(name, value, date, type, category);

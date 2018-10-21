@@ -122,7 +122,10 @@ public class ModifyEntryActivity extends AppCompatActivity implements DatePicker
         if(typeButton.isChecked()){
             type=1;
         }
-        else type=2;
+        else {
+            type=2;
+            if(value>0) {value = value*-1;};
+        }
         int category = selectedCategory;
 
         myHelper.update(_id, name, value, date, type, category);

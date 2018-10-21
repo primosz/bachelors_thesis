@@ -28,7 +28,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     static final String DB_NAME = "baza.DB";
 
     // database version
-    static final int DB_VERSION = 1;
+    static final int DB_VERSION = 4;
 
     private SQLiteDatabase database;
 
@@ -112,18 +112,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
     public void populateWithTestData(){
         addEntry("test1", 3, "2018-09-01", 1, 2 );
-        addEntry("test2", 5, "2018-10-01", 2, 1 );
+        addEntry("test2", -5, "2018-10-01", 2, 1 );
         addEntry("test3", 34, "2018-10-20", 1, 3 );
-        addEntry("test4", 1, "2018-10-19", 1, 4 );
-        addEntry("test5", 12.5, "2018-10-11", 2, 2 );
+        addEntry("test4", 1, "2018-10-19", 1, 2 );
+        addEntry("test5", -12.5, "2018-10-11", 2, 2 );
         addEntry("test6", 3, "2018-10-13", 1, 2 );
-        addEntry("test7", 300.5, "2018-10-14", 2, 1 );
+        addEntry("test7", -300.5, "2018-10-14", 2, 1 );
         addEntry("test8", 130.5, "2018-10-17", 1, 3 );
         addEntry("test9", 30.5, "2018-10-20", 1, 2 );
-        addEntry("test10", 320.5, "2018-10-19", 1, 4 );
+        addEntry("test10", 320.5, "2018-10-19", 1, 3 );
         addEntry("test11", 30.54, "2018-10-3", 1, 2 );
         addEntry("test12", 2.5, "2018-10-5", 1, 1 );
-        addEntry("test13", 10.5, "2018-10-15", 1, 2 );
+        addEntry("test13", -10.5, "2018-10-15", 2, 2 );
         addEntry("test14", 3.5, "2018-10-20", 1, 2 );
 
 
@@ -140,11 +140,49 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    public Cursor getSumOfDay(String date){
-        String rawQuery = "SELECT strftime('%j', "+date+") as valDay, date, \n" +
+    public Cursor getDailySums(){
+        String rawQuery = "SELECT strftime('%j', "+DATE+") as valDay, date, \n" +
                 "SUM("+VALUE+") as valTotalDay \n" +
                 "FROM "+MAIN_TABLE_NAME+
-                " GROUP BY valDay";
+                " GROUP BY valDay ORDER BY "+DATE;
+        Cursor cursor = database.rawQuery(rawQuery, null);
+        return cursor;
+    }
+
+
+    public Cursor getSumIncomeOfSingleDay(String date){
+        String rawQuery = "SELECT          IFNULL(SUM(value), 0)\n" +
+                "                FROM ENTRY\n" +
+                "                WHERE type_id=1 and  date=\""+date+"\"";
+        Cursor cursor = database.rawQuery(rawQuery, null);
+        return cursor;
+    }
+
+    public Cursor getSumOutcomeOfSingleDay(String date){
+        String rawQuery = "SELECT          IFNULL(SUM(value), 0)\n" +
+                "                FROM ENTRY\n" +
+                "                WHERE type_id=2 and  date=\""+date+"\"";
+        Cursor cursor = database.rawQuery(rawQuery, null);
+        return cursor;
+    }
+
+
+    public Cursor getSumIncomesOfDay(){
+        String rawQuery = "SELECT strftime('%j', "+DATE+") as valDay, date, \n" +
+                "SUM("+VALUE+") as valTotalDay \n" +
+                "FROM "+MAIN_TABLE_NAME+
+                " WHERE " + TYPE_ID+" =1"+
+                " GROUP BY valDay ORDER BY "+DATE + " DESC";
+        Cursor cursor = database.rawQuery(rawQuery, null);
+        return cursor;
+    }
+
+    public Cursor getSumOutcomesOfDay(){
+        String rawQuery = "SELECT strftime('%j', "+DATE+") as valDay, date, \n" +
+                "SUM("+VALUE+") as valTotalDay \n" +
+                "FROM "+MAIN_TABLE_NAME+
+                " WHERE " + TYPE_ID+" =1"+
+                " GROUP BY valDay ORDER BY "+DATE + " DESC";
         Cursor cursor = database.rawQuery(rawQuery, null);
         return cursor;
     }
@@ -153,7 +191,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     {   String rawQuery ="SELECT  ENTRY._ID, NAME, VALUE, DATE, TYPE ,CATEGORY\n" +
             "            FROM ENTRY join TYPE_TABLE on ENTRY.type_id=TYPE_TABLE._id\n" +
             "            join CATEGORY_TABLE on ENTRY.category_id=CATEGORY_TABLE._id\n" +
-            "            WHERE strftime('%j', DATE)=strftime('%j', \""+date+"\")";
+            "            WHERE date =\""+date+"\"";
         Cursor cursor = database.rawQuery(rawQuery, null);
         return cursor;
     }

@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity  implements LoaderManager.Lo
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         mAdapter = new EntriesAdapter(this, null);
         recyclerView.setAdapter(mAdapter);
-        //myHelper.populateWithTestData();
+        myHelper.populateWithTestData();
 
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
@@ -96,6 +96,11 @@ public class MainActivity extends AppCompatActivity  implements LoaderManager.Lo
 
         if (id == R.id.cal) {
             Intent add_mem = new Intent(this, CalendarActivity.class);
+            startActivity(add_mem);
+        }
+
+        if (id == R.id.chartWeek) {
+            Intent add_mem = new Intent(this, LastWeekActivity.class);
             startActivity(add_mem);
         }
         return super.onOptionsItemSelected(item);

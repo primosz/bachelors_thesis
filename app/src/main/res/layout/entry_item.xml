@@ -5,49 +5,57 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="10dp"
-    android:gravity="left">
+    android:gravity="left"
+    android:orientation="horizontal"
+    android:background="?android:attr/selectableItemBackground"
+    str>
 
     <TextView
         android:id="@+id/tvItemId"
-        android:layout_width="25dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
         android:layout_marginRight="2dp"
+        android:layout_weight="0.24"
         android:gravity="center_vertical|center_horizontal"
         android:textColor="@color/colorPrimaryDark" />
 
     <TextView
         android:id="@+id/tvItemType"
-        android:layout_width="60dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
+        android:layout_weight="0.22"
         android:gravity="center_vertical|center_horizontal"
         android:text="TextView" />
 
     <TextView
         android:id="@+id/tvItemValue"
-        android:layout_width="50dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
         android:layout_marginTop="2dp"
+        android:layout_weight="0.23"
         android:gravity="center_vertical|center_horizontal"
         android:text="1234.5"
         android:textSize="12sp" />
 
     <TextView
         android:id="@+id/tvItemCategory"
-        android:layout_width="70dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
+        android:layout_weight="0.21"
         android:gravity="center_vertical|center_horizontal"
         android:text="TextView" />
 
     <TextView
         android:id="@+id/tvItemName"
-        android:layout_width="100dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
 
+        android:layout_weight="0.2"
         android:gravity="center_vertical|center_horizontal"
         android:text="TextView"
         android:textColor="@color/colorPrimary"
@@ -55,9 +63,10 @@
 
     <TextView
         android:id="@+id/tvItemDate"
-        android:layout_width="80dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
+        android:layout_weight="0.2"
         android:gravity="center_vertical|center_horizontal"
         android:text="TextView" />
 </LinearLayout>
