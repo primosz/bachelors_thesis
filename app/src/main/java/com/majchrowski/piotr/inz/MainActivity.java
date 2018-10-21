@@ -2,19 +2,24 @@ package com.majchrowski.piotr.inz;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
+
 
 public class MainActivity extends AppCompatActivity  implements LoaderManager.LoaderCallbacks<Cursor>, EntriesAdapter.OnItemClickListener {
 
@@ -28,13 +33,16 @@ public class MainActivity extends AppCompatActivity  implements LoaderManager.Lo
     private SimpleCursorAdapter adapter;
 
     private static final int LOADER_ID = 1976;
+    public Toolbar toolBar;
 
 
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_ent_list);
+        toolBar = (Toolbar) findViewById(R.id.toolbar);
 
         myHelper = new DatabaseHelper(this);
         myHelper.open();
@@ -64,6 +72,13 @@ public class MainActivity extends AppCompatActivity  implements LoaderManager.Lo
         mAdapter.setOnItemClickListener(MainActivity.this);
         getSupportLoaderManager().initLoader(LOADER_ID, null, this);
 
+        recyclerView.addItemDecoration(new DividerItemDecoration(this,
+                DividerItemDecoration.VERTICAL));
+
+        toolBar.setTitle("TEST");
+        setSupportActionBar(toolBar);
+
+        DrawerUtil.getDrawer(this,toolBar);
 
 
 

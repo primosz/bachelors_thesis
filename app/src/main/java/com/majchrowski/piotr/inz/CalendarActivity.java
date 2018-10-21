@@ -2,16 +2,22 @@ package com.majchrowski.piotr.inz;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.widget.FrameLayout;
 import android.widget.Toast;
+
 
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.github.sundeepk.compactcalendarview.domain.Event;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class CalendarActivity extends AppCompatActivity {
@@ -19,8 +25,10 @@ public class CalendarActivity extends AppCompatActivity {
     static CompactCalendarView calendar;
     FrameLayout frameLayout;
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    Toolbar toolBar;
 
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,12 +38,16 @@ public class CalendarActivity extends AppCompatActivity {
 
 
 
-        final ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(false);
-        actionBar.setTitle(null);
 
         calendar = (CompactCalendarView) findViewById(R.id.compactcalendar_view);
        calendar.setUseThreeLetterAbbreviation(true);
+
+        toolBar = (Toolbar) findViewById(R.id.toolbarCalendar);
+
+        toolBar.setTitle("This month");
+        setSupportActionBar(toolBar);
+
+        DrawerUtil.getDrawer(this,toolBar);
 
 
 
@@ -56,7 +68,7 @@ public class CalendarActivity extends AppCompatActivity {
 
             @Override
             public void onMonthScroll(Date firstDayOfNewMonth) {
-                actionBar.setTitle(dateFormat.format(firstDayOfNewMonth));
+                toolBar.setTitle(dateFormat.format(firstDayOfNewMonth));
 
             }
         });

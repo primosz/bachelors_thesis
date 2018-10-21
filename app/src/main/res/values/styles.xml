@@ -6,6 +6,8 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
     <style name="AppThemeToggle" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:textColorPrimary">#ff7043</item>
@@ -13,5 +15,6 @@
         <item name="android:colorControlNormal">#f9252c</item>
         <item name="android:colorControlHighlight">#c51162</item>
         <item name="android:colorButtonNormal">#b9e0f6</item>
+
     </style>
 </resources>

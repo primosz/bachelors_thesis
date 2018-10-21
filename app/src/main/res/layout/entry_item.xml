@@ -7,7 +7,7 @@
     android:layout_marginBottom="10dp"
     android:gravity="left"
     android:orientation="horizontal"
-    android:background="?android:attr/selectableItemBackground"
+
     >
 
     <TextView
