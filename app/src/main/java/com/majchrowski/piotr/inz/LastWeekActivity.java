@@ -6,6 +6,7 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
 import com.github.mikephil.charting.charts.BarChart;
@@ -30,6 +31,7 @@ public class LastWeekActivity extends AppCompatActivity {
     Calendar calendar;
     SimpleDateFormat sd;
     BarChart chart;
+    Toolbar toolBar;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -49,7 +51,16 @@ public class LastWeekActivity extends AppCompatActivity {
         data.setBarWidth(0.9f); // set custom bar width
         chart.setData(data);
         chart.setFitBars(true); // make the x-axis fit exactly all bars
+        chart.animateY(1000);
         chart.invalidate(); // refresh
+
+
+        toolBar = (Toolbar) findViewById(R.id.toolbarWeek);
+
+        toolBar.setTitle("Summary for last week");
+        setSupportActionBar(toolBar);
+
+        DrawerUtil.getDrawer(this,toolBar);
 
 
 

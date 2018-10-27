@@ -4,9 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.support.v4.content.CursorLoader;
 
-/**
- * Created by jfedin on 5/20/2017.
- */
+
 
 public class MyLoader extends CursorLoader {
     DatabaseHelper myDatabaseHelper;

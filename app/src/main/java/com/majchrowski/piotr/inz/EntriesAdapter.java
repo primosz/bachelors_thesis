@@ -97,6 +97,8 @@ public class EntriesAdapter extends RecyclerView.Adapter<EntriesAdapter.EntriesV
 
     @Override
     public int getItemCount() {
+        if(mCursor==null)
+            return 0;
         return mCursor.getCount();
     }
 

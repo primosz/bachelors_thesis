@@ -149,6 +149,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    public Cursor getSumIncomeOfMonth(int minusCurrent){
+        String rawQuery = "SELECT IFNULL(SUM(value),0), strftime('%m',date('now', 'start of month', '"+minusCurrent+" months'))" +
+                "FROM ENTRY " +
+                "WHERE type_id=1 and " +
+                "strftime('%m', date)= strftime('%m',date('now', 'start of month', '"+minusCurrent+" months'))";
+        Cursor cursor = database.rawQuery(rawQuery, null);
+        return cursor;
+    }
+
+
+    public Cursor getSumOutcomeOfMonth(int minusCurrent){
+        String rawQuery = "SELECT IFNULL(SUM(value),0), strftime('%m',date('now', 'start of month', '"+minusCurrent+" months'))" +
+                "FROM ENTRY " +
+                "WHERE type_id=2 and " +
+                "strftime('%m', date)= strftime('%m',date('now', 'start of month', '"+minusCurrent+" months'))";
+        Cursor cursor = database.rawQuery(rawQuery, null);
+        return cursor;
+    }
 
     public Cursor getSumIncomeOfSingleDay(String date){
         String rawQuery = "SELECT          IFNULL(SUM(value), 0)\n" +

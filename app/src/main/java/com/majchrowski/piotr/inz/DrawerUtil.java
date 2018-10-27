@@ -6,8 +6,11 @@ import android.content.res.Resources;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageView;
 
 
+import com.mikepenz.materialdrawer.AccountHeader;
+import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.DividerDrawerItem;
@@ -16,11 +19,18 @@ import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
 
+
 public class DrawerUtil {
+    private static AccountHeader headerResult;
+
+
     public static void getDrawer(final Activity activity, Toolbar toolbar) {
         //if you want to update the items at a later time it is recommended to keep it in a variable
         PrimaryDrawerItem drawerEmptyItem= new PrimaryDrawerItem().withIdentifier(0).withName("");
         drawerEmptyItem.withEnabled(false);
+
+        PrimaryDrawerItem drawerItemMain = new PrimaryDrawerItem()
+                .withIdentifier(0).withName("Main list").withIcon(android.R.drawable.ic_menu_info_details);
 
         PrimaryDrawerItem drawerItemAdd = new PrimaryDrawerItem()
                 .withIdentifier(1).withName("Add Entry").withIcon(android.R.drawable.ic_menu_add);
@@ -28,6 +38,8 @@ public class DrawerUtil {
                 .withName("Last week").withIcon(activity.getResources().getDrawable(android.R.drawable.ic_menu_agenda));
         PrimaryDrawerItem drawerItemCalendar = new PrimaryDrawerItem()
                 .withIdentifier(2).withName("Calendar").withIcon(android.R.drawable.ic_menu_my_calendar);
+        PrimaryDrawerItem drawerItemMonth = new PrimaryDrawerItem()
+                .withIdentifier(4).withName("Month summary").withIcon(android.R.drawable.ic_dialog_info);
 
 
 
@@ -44,7 +56,11 @@ public class DrawerUtil {
 
 
 
-
+        headerResult = new AccountHeaderBuilder()
+                .withActivity(activity)
+                .withCompactStyle(false)
+                .withHeaderBackground(R.drawable.header)
+                .build();
 
         //create the drawer and remember the `Drawer` result object
         Drawer result = new DrawerBuilder()
@@ -53,18 +69,27 @@ public class DrawerUtil {
                 .withActionBarDrawerToggle(true)
                 .withActionBarDrawerToggleAnimated(true)
                 .withCloseOnClick(true)
+                .withAccountHeader(headerResult)
                 .withSelectedItem(-1)
                 .addDrawerItems(
-                        drawerEmptyItem,drawerEmptyItem,drawerEmptyItem,
+                        drawerEmptyItem,drawerEmptyItem,
+                        drawerItemMain,
                         drawerItemLastWeek,
                         drawerItemCalendar,
                         drawerItemAdd,
+                        drawerItemMonth,
                         new DividerDrawerItem()
 
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+
+                        if (drawerItem.getIdentifier() == 0&& !(activity instanceof MainActivity)) {
+                            // load tournament screen
+                            Intent intent = new Intent(activity, MainActivity.class);
+                            view.getContext().startActivity(intent);
+                        }
                         if (drawerItem.getIdentifier() == 1) {
                             // load tournament screen
                             Intent intent = new Intent(activity, AddEntryActivity.class);
@@ -78,6 +103,11 @@ public class DrawerUtil {
                         if (drawerItem.getIdentifier() == 3) {
                             // load tournament screen
                             Intent intent = new Intent(activity, LastWeekActivity.class);
+                            view.getContext().startActivity(intent);
+                        }
+                        if (drawerItem.getIdentifier() == 4) {
+                            // load tournament screen
+                            Intent intent = new Intent(activity, Summary.class);
                             view.getContext().startActivity(intent);
                         }
                         return true;

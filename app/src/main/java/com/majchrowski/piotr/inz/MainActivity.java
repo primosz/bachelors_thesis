@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity  implements LoaderManager.Lo
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         mAdapter = new EntriesAdapter(this, null);
         recyclerView.setAdapter(mAdapter);
-        myHelper.populateWithTestData();
+       // myHelper.populateWithTestData();
 
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity  implements LoaderManager.Lo
         recyclerView.addItemDecoration(new DividerItemDecoration(this,
                 DividerItemDecoration.VERTICAL));
 
-        toolBar.setTitle("TEST");
+        toolBar.setTitle("Mój Budżet");
         setSupportActionBar(toolBar);
 
         DrawerUtil.getDrawer(this,toolBar);
