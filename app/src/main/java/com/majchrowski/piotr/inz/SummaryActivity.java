@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -19,7 +18,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class Summary extends AppCompatActivity {
+public class SummaryActivity extends AppCompatActivity {
     Toolbar toolBar;
     TextView tvIncomeValue, tvOutcomeValue, tvmonth, tvSum, tvNoData;
     DatabaseHelper myHelper;
@@ -55,7 +54,7 @@ public class Summary extends AppCompatActivity {
         myHelper.open();
 
 
-        toolBar = (Toolbar) findViewById(R.id.toolbarSummary);
+        toolBar = (Toolbar) findViewById(R.id.toolbarCategorySummary);
         toolBar.setTitle("Summary for recent months");
         setSupportActionBar(toolBar);
 
@@ -103,7 +102,7 @@ public class Summary extends AppCompatActivity {
 
     }
 
-    private double getSumFromMonth(int current, boolean inOrOut) {
+    public double getSumFromMonth(int current, boolean inOrOut) {
 
         myHelper = new DatabaseHelper(this);
         myHelper.open();
@@ -126,7 +125,7 @@ public class Summary extends AppCompatActivity {
             int monthnum=Integer.parseInt(c.getString(1));
             cal.set(Calendar.MONTH,monthnum);
 
-            tvmonth.setText(month_date.format(cal.getTime()));
+            tvmonth.setText(c.getString(1)+"-"+c.getString(2));
 
             do
             {
@@ -160,4 +159,5 @@ public class Summary extends AppCompatActivity {
         current+=1;
         showData(current);
     }
+
 }

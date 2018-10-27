@@ -149,21 +149,34 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    public Cursor getSumOfCategories(int minusCurrent){
+        String rawQuery = "SELECT CATEGORY_TABLE.category, SUM(ENTRY.value), strftime('%m',date('now', 'start of month', '"+minusCurrent+" months'))" +
+                "FROM ENTRY join TYPE_TABLE on ENTRY.type_id=TYPE_TABLE._id\n" +
+                "join CATEGORY_TABLE on ENTRY.category_id=CATEGORY_TABLE._id\n" +
+                "WHERE type_id =2 and strftime('%m', ENTRY.date)= strftime('%m',date('now', 'start of month', '"+minusCurrent+" months')) and" +
+                " strftime('%Y', date)= strftime('%Y',date('now', 'start of month', '"+minusCurrent+" months'))" +
+                "GROUP BY category_id";
+        Cursor cursor = database.rawQuery(rawQuery, null);
+        return cursor;
+    }
+
     public Cursor getSumIncomeOfMonth(int minusCurrent){
-        String rawQuery = "SELECT IFNULL(SUM(value),0), strftime('%m',date('now', 'start of month', '"+minusCurrent+" months'))" +
+        String rawQuery = "SELECT IFNULL(SUM(value),0), strftime('%m',date('now', 'start of month', '"+minusCurrent+" months')), strftime('%Y',date('now', 'start of month', '"+minusCurrent+ " months'))" +
                 "FROM ENTRY " +
                 "WHERE type_id=1 and " +
-                "strftime('%m', date)= strftime('%m',date('now', 'start of month', '"+minusCurrent+" months'))";
+                "strftime('%m', date)= strftime('%m',date('now', 'start of month', '"+minusCurrent+" months')) and" +
+                " strftime('%Y', date)= strftime('%Y',date('now', 'start of month', '"+minusCurrent+" months'))";
         Cursor cursor = database.rawQuery(rawQuery, null);
         return cursor;
     }
 
 
     public Cursor getSumOutcomeOfMonth(int minusCurrent){
-        String rawQuery = "SELECT IFNULL(SUM(value),0), strftime('%m',date('now', 'start of month', '"+minusCurrent+" months'))" +
+        String rawQuery = "SELECT IFNULL(SUM(value),0), strftime('%m',date('now', 'start of month', '"+minusCurrent+" months')), strftime('%Y',date('now', 'start of month', '"+minusCurrent+ " months'))" +
                 "FROM ENTRY " +
                 "WHERE type_id=2 and " +
-                "strftime('%m', date)= strftime('%m',date('now', 'start of month', '"+minusCurrent+" months'))";
+                "strftime('%m', date)= strftime('%m',date('now', 'start of month', '"+minusCurrent+" months')) and" +
+                " strftime('%Y', date)= strftime('%Y',date('now', 'start of month', '"+minusCurrent+" months'))";
         Cursor cursor = database.rawQuery(rawQuery, null);
         return cursor;
     }

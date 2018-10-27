@@ -22,7 +22,8 @@
         <activity android:name=".ModifyEntryActivity" />
         <activity android:name=".CalendarActivity" />
         <activity android:name=".LastWeekActivity" />
-        <activity android:name=".Summary"></activity>
+        <activity android:name=".SummaryActivity" />
+        <activity android:name=".CategorySummaryActivity"></activity>
     </application>
 
 </manifest>
