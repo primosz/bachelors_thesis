@@ -32,6 +32,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     implementation 'com.github.sundeepk:compact-calendar-view:3.0.0'
+    implementation 'com.github.clans:fab:1.6.4'
     api 'com.android.support:design:27.1.1'
     implementation('com.mikepenz:materialdrawer:5.9.5@aar') {
         transitive = true

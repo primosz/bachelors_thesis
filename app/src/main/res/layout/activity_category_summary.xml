@@ -50,6 +50,7 @@
         android:layout_width="385dp"
         android:layout_height="308dp"
         android:layout_marginBottom="136dp"
+        android:foregroundGravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

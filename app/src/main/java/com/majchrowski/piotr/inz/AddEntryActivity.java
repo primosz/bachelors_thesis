@@ -2,6 +2,7 @@ package com.majchrowski.piotr.inz;
 
 import android.app.DatePickerDialog;
 import android.app.DialogFragment;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -87,6 +88,12 @@ public class AddEntryActivity extends AppCompatActivity implements DatePickerDia
 
             }
         });
+
+        Intent intent = getIntent();
+        if (intent!=null) {
+            int type = intent.getIntExtra("type", 1);
+            typeButton.setChecked(type==1);
+        }
 
 
     }

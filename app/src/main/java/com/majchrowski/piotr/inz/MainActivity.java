@@ -1,5 +1,7 @@
 package com.majchrowski.piotr.inz;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Build;
@@ -17,13 +19,18 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ListView;
 import android.widget.TextView;
+
+import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
+
+import java.util.Calendar;
 
 
 public class MainActivity extends AppCompatActivity  implements LoaderManager.LoaderCallbacks<Cursor>, EntriesAdapter.OnItemClickListener {
 
     private DatabaseHelper myHelper;
+    Calendar cal;
 
 
     private EntriesAdapter mAdapter;
@@ -34,6 +41,8 @@ public class MainActivity extends AppCompatActivity  implements LoaderManager.Lo
 
     private static final int LOADER_ID = 1976;
     public Toolbar toolBar;
+    FloatingActionButton fabIn, fabOut;
+    FloatingActionMenu flMenu;
 
 
 
@@ -48,11 +57,48 @@ public class MainActivity extends AppCompatActivity  implements LoaderManager.Lo
         myHelper.open();
         empty = (TextView) findViewById(R.id.empty);
 
+        cal = Calendar.getInstance();
+        cal.set(Calendar.HOUR, 20);
+        cal.set(Calendar.MINUTE, 0);
+        Intent intent = new Intent(getApplicationContext(), NotificationReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 100, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+
+
+        flMenu = findViewById(R.id.flMenu);
+        flMenu.bringToFront();
+        fabIn =findViewById(R.id.fabIn);
+        fabOut=findViewById(R.id.fabOut);
+        fabIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent add_intent = new Intent(getApplicationContext(), AddEntryActivity.class);
+                add_intent.putExtra("type", 1);
+
+
+                startActivity(add_intent);
+
+            }
+        });
+
+        fabOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent add_intent = new Intent(getApplicationContext(), AddEntryActivity.class);
+                add_intent.putExtra("type", 2);
+
+
+                startActivity(add_intent);
+
+            }
+        });
+
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         mAdapter = new EntriesAdapter(this, null);
         recyclerView.setAdapter(mAdapter);
-       // myHelper.populateWithTestData();
+        myHelper.populateWithTestData();
 
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override

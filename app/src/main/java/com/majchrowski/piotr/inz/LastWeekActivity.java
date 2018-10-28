@@ -52,6 +52,8 @@ public class LastWeekActivity extends AppCompatActivity {
         chart.setData(data);
         chart.setFitBars(true); // make the x-axis fit exactly all bars
         chart.animateY(1000);
+        chart.setDescription(null);
+        chart.moveViewTo(0,0,null);
         chart.invalidate(); // refresh
 
 
