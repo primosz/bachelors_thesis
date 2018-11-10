@@ -42,7 +42,8 @@ public class DrawerUtil {
                 .withIdentifier(4).withName("Month summary").withIcon(android.R.drawable.ic_dialog_info);
         PrimaryDrawerItem drawerItemCategory = new PrimaryDrawerItem()
                 .withIdentifier(5).withName("Category summary").withIcon(android.R.drawable.ic_dialog_info);
-
+        PrimaryDrawerItem drawerItemSettings = new PrimaryDrawerItem()
+                .withIdentifier(6).withName("Settings").withIcon(android.R.drawable.ic_menu_agenda);
 
 
 /*
@@ -81,6 +82,7 @@ public class DrawerUtil {
                         drawerItemAdd,
                         drawerItemMonth,
                         drawerItemCategory,
+                        drawerItemSettings,
                         new DividerDrawerItem()
 
                 )
@@ -116,6 +118,11 @@ public class DrawerUtil {
                         if (drawerItem.getIdentifier() == 5) {
                             // load tournament screen
                             Intent intent = new Intent(activity, CategorySummaryActivity.class);
+                            view.getContext().startActivity(intent);
+                        }
+                        if (drawerItem.getIdentifier() == 6) {
+                            // load tournament screen
+                            Intent intent = new Intent(activity, SettingsActivity.class);
                             view.getContext().startActivity(intent);
                         }
                         return true;

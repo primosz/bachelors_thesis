@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity  implements LoaderManager.Lo
     private TextView empty;
     private RecyclerView recyclerView;
 
-    private SimpleCursorAdapter adapter;
+
 
     private static final int LOADER_ID = 1976;
     public Toolbar toolBar;
@@ -55,15 +55,13 @@ public class MainActivity extends AppCompatActivity  implements LoaderManager.Lo
 
         myHelper = new DatabaseHelper(this);
         myHelper.open();
+        myHelper.populateWithTestData();
         empty = (TextView) findViewById(R.id.empty);
 
         cal = Calendar.getInstance();
         cal.set(Calendar.HOUR, 20);
         cal.set(Calendar.MINUTE, 0);
-        Intent intent = new Intent(getApplicationContext(), NotificationReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 100, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+
 
 
         flMenu = findViewById(R.id.flMenu);

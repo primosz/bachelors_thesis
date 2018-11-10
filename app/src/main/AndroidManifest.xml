@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.majchrowski.piotr.inz">
-    <uses-permission android:name="android.permission.SET_ALARM"/>
+
+    <uses-permission android:name="android.permission.SET_ALARM" />
 
     <application
         android:allowBackup="true"
@@ -24,8 +25,11 @@
         <activity android:name=".CalendarActivity" />
         <activity android:name=".LastWeekActivity" />
         <activity android:name=".SummaryActivity" />
-        <activity android:name=".CategorySummaryActivity"></activity>
+        <activity android:name=".CategorySummaryActivity" />
+
         <receiver android:name=".NotificationReceiver" />
+
+        <activity android:name=".SettingsActivity"></activity>
     </application>
 
 </manifest>

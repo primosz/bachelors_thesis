@@ -130,7 +130,10 @@ public class AddEntryActivity extends AppCompatActivity implements DatePickerDia
     public void addButtonPressed(View view) {
         String name = nameEditText.getText().toString();
         String date = dateTextView.getText().toString();
-        double value = Double.parseDouble(valueEditText.getText().toString());
+        double value=0;
+        if(!valueEditText.getText().toString().equals("")) {
+             value = Double.parseDouble(valueEditText.getText().toString());
+        }
         int type;
         if(typeButton.isChecked()){
             type=1;
@@ -141,8 +144,10 @@ public class AddEntryActivity extends AppCompatActivity implements DatePickerDia
         }
         int category = selectedCategory;
 
-        myHelper.addEntry(name, value, date, type, category);
-        Toast.makeText(this, "Record added!", Toast.LENGTH_SHORT).show();
+        if(!name.equals("") ) {
+            myHelper.addEntry(name, value, date, type, category);
+            Toast.makeText(this, "Record added!", Toast.LENGTH_SHORT).show();
+        }
 
         finish();
     }

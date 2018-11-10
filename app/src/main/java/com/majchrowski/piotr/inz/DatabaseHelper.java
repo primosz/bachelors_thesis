@@ -25,7 +25,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String VALUE = "value";
     public static final String NAME = "name";
     // Database Information
-    static final String DB_NAME = "baza.DB";
+    static public String DB_NAME = "baza.DB";
 
     // database version
     static final int DB_VERSION = 4;
@@ -83,6 +83,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         database.close();
     }
 
+    public void clearDatabase() {
+        String clearDBQuery = "DELETE FROM "+MAIN_TABLE_NAME;
+        database.execSQL(clearDBQuery);
+    }
     public void addCategory(String category)
     {
         ContentValues contentValues = new ContentValues();
@@ -110,20 +114,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         database.insert(MAIN_TABLE_NAME, null, contentValues);
     }
+
     public void populateWithTestData(){
-        addEntry("test1", 3, "2018-09-01", 1, 2 );
-        addEntry("test2", -5, "2018-10-01", 2, 1 );
-        addEntry("test3", 34, "2018-10-20", 1, 3 );
-        addEntry("test4", 1, "2018-10-19", 1, 2 );
-        addEntry("test5", -12.5, "2018-10-11", 2, 2 );
-        addEntry("test6", 3, "2018-10-13", 1, 2 );
-        addEntry("test7", -300.5, "2018-10-14", 2, 1 );
-        addEntry("test8", 130.5, "2018-10-17", 1, 3 );
-        addEntry("test9", 30.5, "2018-10-20", 1, 2 );
-        addEntry("test10", 320.5, "2018-10-19", 1, 3 );
-        addEntry("test11", 30.54, "2018-10-3", 1, 2 );
-        addEntry("test12", 2.5, "2018-10-5", 1, 1 );
-        addEntry("test13", -10.5, "2018-10-15", 2, 2 );
+        addEntry("test1", 3, "2018-11-01", 1, 2 );
+        addEntry("test2", -5, "2018-11-01", 2, 1 );
+        addEntry("test3", 34, "2018-11-02", 1, 3 );
+        addEntry("test4", 1, "2018-12-03", 1, 2 );
+        addEntry("test5", -12.5, "2018-12-03", 2, 2 );
+        addEntry("test6", 3, "2018-10-30", 1, 2 );
+        addEntry("test7", -300.5, "2018-11-05", 2, 1 );
+        addEntry("test8", 130.5, "2018-11-07", 1, 3 );
+        addEntry("test9", 30.5, "2018-11-06", 1, 2 );
+        addEntry("test10", 320.5, "2018-11-09", 1, 3 );
+        addEntry("test11", 30.54, "2018-11-09", 1, 2 );
+        addEntry("test12", 2.5, "2018-11-05", 1, 1 );
+        addEntry("test13", -10.5, "2018-11-01", 2, 2 );
         addEntry("test14", 3.5, "2018-10-20", 1, 2 );
 
 
