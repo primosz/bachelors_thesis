@@ -30,20 +30,20 @@ public class DrawerUtil {
         drawerEmptyItem.withEnabled(false);
 
         PrimaryDrawerItem drawerItemMain = new PrimaryDrawerItem()
-                .withIdentifier(0).withName("Main list").withIcon(android.R.drawable.ic_menu_info_details);
+                .withIdentifier(0).withName(R.string.main_list).withIcon(android.R.drawable.ic_menu_info_details);
 
         PrimaryDrawerItem drawerItemAdd = new PrimaryDrawerItem()
-                .withIdentifier(1).withName("Add Entry").withIcon(android.R.drawable.ic_menu_add);
+                .withIdentifier(1).withName(R.string.add_entry).withIcon(android.R.drawable.ic_menu_add);
         PrimaryDrawerItem drawerItemLastWeek = new PrimaryDrawerItem().withIdentifier(3)
-                .withName("Last week").withIcon(activity.getResources().getDrawable(android.R.drawable.ic_menu_agenda));
+                .withName(R.string.last_week).withIcon(activity.getResources().getDrawable(android.R.drawable.ic_menu_agenda));
         PrimaryDrawerItem drawerItemCalendar = new PrimaryDrawerItem()
-                .withIdentifier(2).withName("Calendar").withIcon(android.R.drawable.ic_menu_my_calendar);
+                .withIdentifier(2).withName(R.string.calendar).withIcon(android.R.drawable.ic_menu_my_calendar);
         PrimaryDrawerItem drawerItemMonth = new PrimaryDrawerItem()
-                .withIdentifier(4).withName("Month summary").withIcon(android.R.drawable.ic_dialog_info);
+                .withIdentifier(4).withName(R.string.month_summ).withIcon(android.R.drawable.ic_dialog_info);
         PrimaryDrawerItem drawerItemCategory = new PrimaryDrawerItem()
-                .withIdentifier(5).withName("Category summary").withIcon(android.R.drawable.ic_dialog_info);
+                .withIdentifier(5).withName(R.string.cat_summary).withIcon(android.R.drawable.ic_dialog_info);
         PrimaryDrawerItem drawerItemSettings = new PrimaryDrawerItem()
-                .withIdentifier(6).withName("Settings").withIcon(android.R.drawable.ic_menu_agenda);
+                .withIdentifier(6).withName(R.string.settings).withIcon(android.R.drawable.ic_menu_agenda);
 
 
 /*

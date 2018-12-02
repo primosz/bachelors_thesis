@@ -59,7 +59,7 @@ public class LastWeekActivity extends AppCompatActivity {
 
         toolBar = (Toolbar) findViewById(R.id.toolbarWeek);
 
-        toolBar.setTitle("Summary for last week");
+        toolBar.setTitle(R.string.summ_week);
         setSupportActionBar(toolBar);
 
         DrawerUtil.getDrawer(this,toolBar);
@@ -104,7 +104,7 @@ public class LastWeekActivity extends AppCompatActivity {
         XAxis xAxis = chart.getXAxis();
         xAxis.setGranularity(1f); // minimum axis-step (interval) is 1
         xAxis.setValueFormatter(formatter);
-        BarDataSet set = new BarDataSet(entries, "Outcomes");
+        BarDataSet set = new BarDataSet(entries, getString(R.string.Outcomes));
         set.setColor(Color.RED);
         return set;
 
@@ -146,7 +146,7 @@ public class LastWeekActivity extends AppCompatActivity {
         XAxis xAxis = chart.getXAxis();
         xAxis.setGranularity(1f); // minimum axis-step (interval) is 1
         xAxis.setValueFormatter(formatter);
-        BarDataSet set = new BarDataSet(entries, "Incomes");
+        BarDataSet set = new BarDataSet(entries, getString(R.string.incomes));
         set.setColor(Color.GREEN);
         return set;
 

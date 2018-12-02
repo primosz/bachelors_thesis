@@ -47,10 +47,7 @@ public class ModifyEntryActivity extends AppCompatActivity implements DatePicker
         typeButton=(ToggleButton)findViewById(R.id.typeButton);
         categorySpinner = (Spinner) findViewById(R.id.category_spinner);
         categorySpinner.setAdapter(categoryAdapter);
-
         dateTextView = (TextView) findViewById(R.id.date_textview);
-
-
         Date cal = (Date) Calendar.getInstance().getTime();
         currentDateString = new SimpleDateFormat("dd/MM/yyyy").format(cal.getTime());
         dateTextView.setText(currentDateString);
@@ -65,9 +62,7 @@ public class ModifyEntryActivity extends AppCompatActivity implements DatePicker
         categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(ModifyEntryActivity.this, categoryList.get(position).getName(), Toast.LENGTH_SHORT).show();
                 selectedCategory = categoryList.get(position).getId();
-
             }
 
             @Override
@@ -78,9 +73,6 @@ public class ModifyEntryActivity extends AppCompatActivity implements DatePicker
 
         nameEditText = (EditText) findViewById(R.id.name_edittext);
         valueEditText = (EditText) findViewById(R.id.value_edittext);
-
-
-
 
         Intent intent = getIntent();
         String id = intent.getStringExtra("id");
@@ -129,13 +121,13 @@ public class ModifyEntryActivity extends AppCompatActivity implements DatePicker
         int category = selectedCategory;
 
         myHelper.update(_id, name, value, date, type, category);
-        Toast.makeText(this, "Record updated!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.record_updated, Toast.LENGTH_SHORT).show();
         returnToMainActivity();
     }
 
     public void deleteButtonPressed(View view) {
         myHelper.delete(_id);
-        Toast.makeText(this, "Record deleted!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.record_deleted, Toast.LENGTH_SHORT).show();
         returnToMainActivity();
 
     }

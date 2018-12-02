@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_add_circle_outline_black_24dp"
             app:fab_colorNormal="@color/md_green_400"
-            app:fab_label="Income"
+            app:fab_label="@string/income"
             app:fab_size="mini" />
 
         <com.github.clans.fab.FloatingActionButton
@@ -57,7 +57,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_remove_circle_outline_black_24dp"
             app:fab_colorNormal="@color/md_red_300"
-            app:fab_label="Outcome"
+            app:fab_label="@string/outcome"
             app:fab_size="mini" />
     </com.github.clans.fab.FloatingActionMenu>
 

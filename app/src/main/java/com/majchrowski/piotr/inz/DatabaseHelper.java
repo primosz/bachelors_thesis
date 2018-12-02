@@ -116,20 +116,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public void populateWithTestData(){
-        addEntry("test1", 3, "2018-11-01", 1, 2 );
-        addEntry("test2", -5, "2018-11-01", 2, 1 );
-        addEntry("test3", 34, "2018-11-02", 1, 3 );
-        addEntry("test4", 1, "2018-12-03", 1, 2 );
-        addEntry("test5", -12.5, "2018-12-03", 2, 2 );
+        addEntry("test1", 3, "2018-11-17", 1, 2 );
+        addEntry("test2", -5, "2018-11-16", 2, 1 );
+        addEntry("test3", 34, "2018-11-15", 1, 3 );
+        addEntry("test4", 1, "2018-11-17", 1, 2 );
+        addEntry("test5", -12.5, "2018-11-14", 2, 2 );
         addEntry("test6", 3, "2018-10-30", 1, 2 );
-        addEntry("test7", -300.5, "2018-11-05", 2, 1 );
-        addEntry("test8", 130.5, "2018-11-07", 1, 3 );
+        addEntry("test7", -300.5, "2018-11-15", 2, 1 );
+        addEntry("test8", 130.5, "2018-11-13", 1, 3 );
         addEntry("test9", 30.5, "2018-11-06", 1, 2 );
-        addEntry("test10", 320.5, "2018-11-09", 1, 3 );
-        addEntry("test11", 30.54, "2018-11-09", 1, 2 );
-        addEntry("test12", 2.5, "2018-11-05", 1, 1 );
-        addEntry("test13", -10.5, "2018-11-01", 2, 2 );
-        addEntry("test14", 3.5, "2018-10-20", 1, 2 );
+        addEntry("test10", 320.5, "2018-11-13", 1, 3 );
+        addEntry("test11", 30.54, "2018-11-12", 1, 2 );
+        addEntry("test12", 2.5, "2018-11-11", 1, 1 );
+        addEntry("test13", -10.5, "2018-11-10", 2, 2 );
+        addEntry("test14", 3.5, "2018-10-16", 1, 2 );
 
 
     }
@@ -274,6 +274,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void delete(long _id)
     {
         database.delete(MAIN_TABLE_NAME, _ID + "=" + _id, null);
+    }
+
+    public void deleteByName(String name)
+    {
+        database.delete(MAIN_TABLE_NAME, NAME + "=" + "\""+name+ "\"", null);
+    }
+
+    public Cursor getEntryByName(String name)
+    {
+        Cursor cursor = database.rawQuery("SELECT * FROM " + MAIN_TABLE_NAME+ " WHERE + name =\""+name+"\"", null);
+        return cursor;
     }
 
     public Cursor getNames(String namePassedIn)

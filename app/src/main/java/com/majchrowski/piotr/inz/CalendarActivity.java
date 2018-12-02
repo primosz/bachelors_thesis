@@ -44,7 +44,7 @@ public class CalendarActivity extends AppCompatActivity {
 
         toolBar = (Toolbar) findViewById(R.id.toolbarCalendar);
 
-        toolBar.setTitle("This month");
+        toolBar.setTitle(R.string.this_month);
         setSupportActionBar(toolBar);
 
         DrawerUtil.getDrawer(this,toolBar);
@@ -57,7 +57,6 @@ public class CalendarActivity extends AppCompatActivity {
             public void onDayClick(Date dateClicked) {
                 String stringDate = dateFormat.format(dateClicked);
                 Context context = getApplicationContext();
-                Toast.makeText(context, stringDate, Toast.LENGTH_SHORT).show();
                 DailyFragment fragment = new DailyFragment();
                 Bundle args = new Bundle();
                 args.putString("date", stringDate);

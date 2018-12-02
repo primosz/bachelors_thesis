@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Prawda</string>
+    <string name="app_name">Budget Manager</string>
     <string name="enter_name">Name</string>
     <string name="add_record">Add Record</string>
     <string name="btn_update">Update</string>
@@ -7,4 +7,58 @@
     <string name="empty_list_text">No records found</string>
     <string name="enter_address">Address</string>
     <string name="title_activity_add_employee">AddEmployeeActivity</string>
+    <string name="outcome">Outcome</string>
+    <string name="income">Income</string>
+    <string name="date">Date</string>
+    <string name="month">Month</string>
+    <string name="NoData">No data for this month</string>
+    <string name="previous">Previous</string>
+    <string name="next">Next</string>
+    <string name="value">Value</string>
+    <string name="clear_database">Clear Database</string>
+    <string name="add_category">Add Category</string>
+    <string name="add">Add</string>
+    <string name="set">Set</string>
+    <string name="click_to_set_notification_time">Click to Set Notification Time</string>
+    <string name="incomes">Incomes</string>
+    <string name="outcomes">Outcomes</string>
+
+    <string name="no_data_for_this_month">No data for this month</string>
+    <string name="Record_added">Record added!</string>
+    <string name="this_month">This month</string>
+    <string name="category_summary">Category summary</string>
+    <string name="no_data_forthismonth">No data for this month</string>
+
+    <string name="main_list">Main list</string>
+
+    <string name="add_entry">Add Entry</string>
+
+    <string name="last_week">Last week</string>
+
+    <string name="calendar">Calendar</string>
+    <string name="month_summary">Month summary</string>
+    <string name="month_summ">Month Summary</string>
+    <string name="cat_summary">Category summary</string>
+
+    <string name="settings">Settings</string>
+    <string name="summ_week">Summary for last week</string>
+    <string name="Outcomes">Outcomes</string>
+    <string name="MyBudget">My Budget</string>
+    <string name="record_updated">Record updated!</string>
+    <string name="record_deleted">Record deleted!</string>
+    <string name="enter_expe">Enter your expenses from today</string>
+    <string name="select_time">Select Time</string>
+    <string name="db_cleared">Database cleared!</string>
+    <string name="uSure">Are you sure to clear Database?</string>
+
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
+    <string name="category">Category</string>
+    <string name="added">added!</string>
+    <string name="notif_set">Notification time set to:</string>
+    <string name="summ_month">Summary for recent months</string>
+    <string name="expenses">Expenses</string>
+    <string name="youWillNotify">You will receive notification on:</string>
+    <string name="Last_week">Last week</string>
 </resources>

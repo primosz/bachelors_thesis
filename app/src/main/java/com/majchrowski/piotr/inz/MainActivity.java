@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity  implements LoaderManager.Lo
         recyclerView.addItemDecoration(new DividerItemDecoration(this,
                 DividerItemDecoration.VERTICAL));
 
-        toolBar.setTitle("Mój Budżet");
+        toolBar.setTitle(R.string.MyBudget);
         setSupportActionBar(toolBar);
 
         DrawerUtil.getDrawer(this,toolBar);
@@ -206,11 +206,11 @@ public class MainActivity extends AppCompatActivity  implements LoaderManager.Lo
         String name = nameTextView.getText().toString();
         double value = Double.parseDouble(valueTextView.getText().toString());
         String typeName = typeTextView.getText().toString();
-        Cursor cursor =myHelper.getTypeId(typeName);
-        cursor.moveToFirst();
-        int type = cursor.getInt(0);
+        int type;
+        if(typeName.equals(R.string.income)) type = 0;
+        else type=1;
         String categoryName = categoryTextView.getText().toString();
-        cursor=myHelper.getCategoryId(categoryName);
+        Cursor cursor=myHelper.getCategoryId(categoryName);
         cursor.moveToFirst();
         int category = cursor.getInt(0);
         String date = dateTextView.getText().toString();

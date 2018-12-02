@@ -35,12 +35,12 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:ems="10"
-        android:hint="Value"
+        android:hint="@string/value"
         android:inputType="numberDecimal"
         android:minLines="5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name_edittext"></EditText>
+        app:layout_constraintTop_toBottomOf="@+id/name_edittext" />
 
 
     <Spinner
@@ -66,8 +66,8 @@
 
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:textOff="Outcome"
-        android:textOn="Income"
+        android:textOff="@string/outcome"
+        android:textOn="@string/income"
         android:theme="@style/AppThemeToggle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -83,7 +83,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:gravity="center_vertical|center_horizontal"
-        android:text="Date"
+        android:text="@string/date"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

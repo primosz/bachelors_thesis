@@ -86,7 +86,16 @@ public class EntriesAdapter extends RecyclerView.Adapter<EntriesAdapter.EntriesV
         double value = mCursor.getDouble(mCursor.getColumnIndex(DatabaseHelper.VALUE));
         holder.idText.setText(String.valueOf(id));
         holder.typeText.setText(type);
-        if(type.equals("Income")) holder.typeText.setTextColor(Color.GREEN); else holder.typeText.setTextColor(Color.RED);
+        if(type.equals("Income"))
+        {
+            holder.typeText.setTextColor(Color.GREEN);
+            holder.typeText.setText(R.string.income);
+        }
+        else {
+            holder.typeText.setTextColor(Color.RED);
+            holder.typeText.setText(R.string.outcome);
+
+        }
         holder.categoryText.setText(category);
         holder.valueText.setText(String.valueOf(value));
         holder.dateText.setText(date);

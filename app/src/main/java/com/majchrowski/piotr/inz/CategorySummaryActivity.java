@@ -54,7 +54,7 @@ public class CategorySummaryActivity extends AppCompatActivity {
 
 
         toolBar = (Toolbar) findViewById(R.id.toolbarCategorySummary);
-        toolBar.setTitle("Category summary");
+        toolBar.setTitle(R.string.category_summary);
         setSupportActionBar(toolBar);
 
         DrawerUtil.getDrawer(this,toolBar);
@@ -67,20 +67,9 @@ public class CategorySummaryActivity extends AppCompatActivity {
         ArrayList<CategorySum> mArrayList = new ArrayList<>();
         Cursor mCursor = myHelper.getSumOfCategories(current);
         Cursor oCursor = myHelper.getSumIncomeOfMonth(current);
-
-
-
-
         if (oCursor.moveToFirst())
         {
-
-
-
-
             tvmonth.setText(oCursor.getString(1)+"-"+oCursor.getString(2));
-
-
-
         }
 
         oCursor.close();
@@ -90,44 +79,29 @@ public class CategorySummaryActivity extends AppCompatActivity {
         if (!(mCursor==null && mCursor.getCount()==0)) {
             for (mCursor.moveToFirst(); !mCursor.isAfterLast(); mCursor.moveToNext()) {
                 // The Cursor is now set to the right position
-
                 mArrayList.add(new CategorySum(mCursor.getString(0), mCursor.getDouble(1), mCursor.getString(2)));
             }
-
-
-
             entries = new ArrayList<>();
             for(CategorySum x : mArrayList) {
                 entries.add(new PieEntry(-1*(float) x.value, x.category));
-
             }
-
-
             set = new PieDataSet(entries, "");
             set.setColors(colors);
             set.setValueTextSize(12);
             set.setValueTextColor(Color.GRAY);
-
             data = new PieData(set);
             Legend legend = pieChart.getLegend();
             legend.setFormSize(30);
             legend.setTextSize(26);
-
             pieChart.setDescription(null);
             pieChart.setDrawHoleEnabled(false);
-            pieChart.setNoDataText("No data for this month");
-
+            pieChart.setNoDataText(getString(R.string.no_data_forthismonth));
             pieChart.setEntryLabelTextSize(0);
-
             pieChart.setEntryLabelColor(Color.GRAY);
             pieChart.setData(data);
             pieChart.animateY(1000);
             pieChart.invalidate(); // refresh
             pieChart.setVisibility(View.VISIBLE);
-
-
-
-
         }
 
     }

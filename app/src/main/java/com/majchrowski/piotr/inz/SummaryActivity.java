@@ -55,7 +55,7 @@ public class SummaryActivity extends AppCompatActivity {
 
 
         toolBar = (Toolbar) findViewById(R.id.toolbarCategorySummary);
-        toolBar.setTitle("Summary for recent months");
+        toolBar.setTitle(R.string.summ_month);
         setSupportActionBar(toolBar);
 
         DrawerUtil.getDrawer(this,toolBar);
@@ -73,9 +73,9 @@ public class SummaryActivity extends AppCompatActivity {
         if(!(incomeValue==0 &&outcomeValue==0)) {
 
             entries = new ArrayList<>();
-            entries.add(new PieEntry((float) incomeValue, "Income"));
-            entries.add(new PieEntry(-1 * (float) outcomeValue, "Outcome"));
-            set = new PieDataSet(entries, "Expenses");
+            entries.add(new PieEntry((float) incomeValue, getString(R.string.income)));
+            entries.add(new PieEntry(-1 * (float) outcomeValue, getString(R.string.outcome)));
+            set = new PieDataSet(entries, getString(R.string.expenses));
             set.setColors(colors);
             set.setValueTextSize(18);
             set.setValueTextColor(Color.GRAY);
@@ -84,7 +84,7 @@ public class SummaryActivity extends AppCompatActivity {
 
             pieChart.setDescription(null);
             pieChart.setDrawHoleEnabled(false);
-            pieChart.setNoDataText("No data for this month");
+            pieChart.setNoDataText(getString(R.string.no_data_for_this_month));
 
             pieChart.setEntryLabelTextSize(18);
             pieChart.setEntryLabelColor(Color.GRAY);

@@ -1,7 +1,9 @@
 package com.majchrowski.piotr.inz;
 
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
 import android.app.DialogFragment;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -22,6 +24,7 @@ import android.widget.ToggleButton;
 import com.github.sundeepk.compactcalendarview.domain.Event;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -32,13 +35,16 @@ public class AddEntryActivity extends AppCompatActivity implements DatePickerDia
 
     private EditText nameEditText, valueEditText;
     private  TextView dateTextView;
-
+    private String dateString;
     private Spinner categorySpinner;
     private List<Category> categoryList;
     private DatabaseHelper myHelper;
     int selectedCategory;
     String currentDateString;
     ToggleButton typeButton;
+    SimpleDateFormat sdf;
+    Calendar c;
+
 
    
 
@@ -68,7 +74,7 @@ public class AddEntryActivity extends AppCompatActivity implements DatePickerDia
 
 
 
-
+        sdf = new SimpleDateFormat("yyyy-MM-dd");
         myHelper = new DatabaseHelper(this);
         myHelper.open();
         populateCategoryList();
@@ -100,14 +106,14 @@ public class AddEntryActivity extends AppCompatActivity implements DatePickerDia
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        Calendar c = Calendar.getInstance();
+        c = Calendar.getInstance();
         c.set(Calendar.YEAR, year);
         c.set(Calendar.MONTH, month);
         c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        currentDateString = new SimpleDateFormat("yyyy-MM-dd").format(c.getTime());
+        dateString = new SimpleDateFormat("yyyy-MM-dd").format(c.getTime());
 
 
-        dateTextView.setText(currentDateString);
+        dateTextView.setText(dateString);
 
     }
 
@@ -127,7 +133,7 @@ public class AddEntryActivity extends AppCompatActivity implements DatePickerDia
 
     }
 
-    public void addButtonPressed(View view) {
+    public void addButtonPressed(View view) throws ParseException {
         String name = nameEditText.getText().toString();
         String date = dateTextView.getText().toString();
         double value=0;
@@ -146,9 +152,21 @@ public class AddEntryActivity extends AppCompatActivity implements DatePickerDia
 
         if(!name.equals("") ) {
             myHelper.addEntry(name, value, date, type, category);
-            Toast.makeText(this, "Record added!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.Record_added, Toast.LENGTH_SHORT).show();
         }
 
+        Date dateSelected = sdf.parse(date);
+        Date currentDate = sdf.parse(currentDateString);
+        if(dateSelected.after(currentDate)&&type==1)
+        {
+            Intent intent = new Intent(getApplicationContext(), NotificationReceiver.class);
+            intent.putExtra("Notification Key", 2);
+            intent.putExtra("Name", name);
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 100, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+            alarmManager.set(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
+            Toast.makeText(AddEntryActivity.this, getString(R.string.youWillNotify)+ " "+ dateSelected, Toast.LENGTH_SHORT).show();
+        }
         finish();
     }
 

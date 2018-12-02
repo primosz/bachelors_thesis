@@ -13,7 +13,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="12dp"
-        android:text="Incomes"
+        android:text="@string/incomes"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvMonth" />
 
@@ -24,7 +24,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="24dp"
-        android:text="Outcomes"
+        android:text="@string/outcomes"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvIncomes" />
 
@@ -35,7 +35,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="12dp"
-        android:text="month"
+        android:text="@string/month"
         android:textSize="@dimen/material_drawer_item_primary_icon_padding_right"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbarCategorySummary" />
@@ -60,7 +60,7 @@
         android:layout_marginTop="304dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:text="No data for this month"
+        android:text="@string/no_data_for_this_month"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -72,7 +72,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="115dp"
         android:layout_marginRight="115dp"
-        android:text="value"
+        android:text="@string/value"
         android:textColor="@color/md_green_400"
         app:layout_constraintBottom_toBottomOf="@+id/tvIncomes"
         app:layout_constraintEnd_toEndOf="parent"
@@ -83,7 +83,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="value"
+        android:text="@string/value"
         android:textColor="@color/md_red_400"
         app:layout_constraintStart_toStartOf="@+id/tvIncomesValue"
         app:layout_constraintTop_toBottomOf="@+id/tvIncomesValue" />
@@ -93,7 +93,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="value"
+        android:text="@string/value"
         app:layout_constraintStart_toStartOf="@+id/tvOutcomesValue"
         app:layout_constraintTop_toBottomOf="@+id/tvOutcomesValue" />
 
@@ -119,7 +119,7 @@
         android:layout_marginLeft="68dp"
         android:layout_marginBottom="8dp"
         android:onClick="prevMonth"
-        android:text="Previous"
+        android:text="@string/previous"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -133,7 +133,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:onClick="nextMonth"
-        android:text="Next"
+        android:text="@string/next"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/prevBtn" />
