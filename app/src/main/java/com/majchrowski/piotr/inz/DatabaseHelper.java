@@ -235,7 +235,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Cursor getAllEntriesJoin()
     {   String rawQuery ="SELECT  ENTRY._ID, NAME, VALUE, DATE, TYPE ,CATEGORY\n" +
             "FROM ENTRY join TYPE_TABLE on ENTRY.type_id=TYPE_TABLE._id\n" +
-            "join CATEGORY_TABLE on ENTRY.category_id=CATEGORY_TABLE._id";
+            "join CATEGORY_TABLE on ENTRY.category_id=CATEGORY_TABLE._id ORDER BY DATE DESC";
         Cursor cursor = database.rawQuery(rawQuery, null);
         return cursor;
     }
@@ -328,6 +328,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         DEFAULT_CATEGORIES.put(CATEGORY,"Dom");
         db.insert(CATEGORY_TABLE_NAME, null, DEFAULT_CATEGORIES);
         DEFAULT_CATEGORIES.put(CATEGORY,"Podróże");
+        db.insert(CATEGORY_TABLE_NAME, null, DEFAULT_CATEGORIES);
+        DEFAULT_CATEGORIES.put(CATEGORY,"Studia");
+        db.insert(CATEGORY_TABLE_NAME, null, DEFAULT_CATEGORIES);
+        DEFAULT_CATEGORIES.put(CATEGORY,"Inne");
+        db.insert(CATEGORY_TABLE_NAME, null, DEFAULT_CATEGORIES);
+        DEFAULT_CATEGORIES.put(CATEGORY,"Praca");
         db.insert(CATEGORY_TABLE_NAME, null, DEFAULT_CATEGORIES);
     }
 }

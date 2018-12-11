@@ -118,6 +118,10 @@ public class SummaryActivity extends AppCompatActivity {
         {
             c = myHelper.getSumOutcomeOfMonth(current);
         }
+
+        if (c.getCount()==0) tvNoData.setVisibility(View.VISIBLE);
+        if (c.getCount()!=0) tvNoData.setVisibility(View.GONE);
+        else tvNoData.setVisibility(View.GONE);
         if (c.moveToFirst())
         {
 

@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity  implements LoaderManager.Lo
 
         myHelper = new DatabaseHelper(this);
         myHelper.open();
-        myHelper.populateWithTestData();
+        //myHelper.populateWithTestData();
         empty = (TextView) findViewById(R.id.empty);
 
         cal = Calendar.getInstance();
@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity  implements LoaderManager.Lo
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         mAdapter = new EntriesAdapter(this, null);
         recyclerView.setAdapter(mAdapter);
-        myHelper.populateWithTestData();
+       // myHelper.populateWithTestData();
 
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override

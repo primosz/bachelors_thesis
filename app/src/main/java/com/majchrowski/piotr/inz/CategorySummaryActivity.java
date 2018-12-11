@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
@@ -28,7 +29,7 @@ public class CategorySummaryActivity extends AppCompatActivity {
     DatabaseHelper myHelper;
     static int current =0;
     PieChart pieChart;
-    final int[] colors={Color.YELLOW, Color.DKGRAY, Color.GREEN};
+    final int[] colors={Color.YELLOW, Color.DKGRAY, Color.GREEN, Color.RED, Color.MAGENTA, Color.LTGRAY, Color.CYAN, Color.BLACK};
     Calendar cal;
     SimpleDateFormat month_date;
     double incomeValue;
@@ -87,14 +88,19 @@ public class CategorySummaryActivity extends AppCompatActivity {
             }
             set = new PieDataSet(entries, "");
             set.setColors(colors);
-            set.setValueTextSize(12);
+            set.setValueTextSize(14);
             set.setValueTextColor(Color.GRAY);
             data = new PieData(set);
             Legend legend = pieChart.getLegend();
-            legend.setFormSize(30);
-            legend.setTextSize(26);
+            legend.setFormSize(26);
+            legend.setTextSize(22);
+
+            legend.setWordWrapEnabled(true);
+
+
             pieChart.setDescription(null);
             pieChart.setDrawHoleEnabled(false);
+            pieChart.setHoleRadius(30);
             pieChart.setNoDataText(getString(R.string.no_data_forthismonth));
             pieChart.setEntryLabelTextSize(0);
             pieChart.setEntryLabelColor(Color.GRAY);
@@ -102,6 +108,8 @@ public class CategorySummaryActivity extends AppCompatActivity {
             pieChart.animateY(1000);
             pieChart.invalidate(); // refresh
             pieChart.setVisibility(View.VISIBLE);
+            pieChart.setFitsSystemWindows(true);
+
         }
 
     }
