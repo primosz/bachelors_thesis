@@ -1,7 +1,7 @@
 # Praca inżynierska
 Aplikacja wspomagająca zarządzanie budżetem domowym
 
-##Technologie
+## Technologie
 - Android
 - Java
 - SQLite
